@@ -39,6 +39,7 @@ jobs:
           host: ${{secrets.SSH_HOST}}
           key: ${{secrets.SSH_PRIVATE_KEY}}
           username: ${{secrets.SSH_USER}}
+          target: ${{secrets.PAT}}
           script: "echo '' > .env"
 
 
