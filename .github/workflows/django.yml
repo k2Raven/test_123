@@ -31,9 +31,25 @@ jobs:
     needs: tests
     name: Publish Image
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        ref: main 
+     
+    - name: Run deploy
+      uses: appleboy/scp-action@master
+      with:
+          host: ${{secrets.SSH_HOST}}
+          port: ${{secrets.SSH_PORT}}
+          key: ${{secrets.SSH_PRIVATE_KEY}}
+          username: ${{ secrets.SSH_USERNAME }}
+          script: |
+            cd ${{secrets.PAT}}
+            ls
+
+
+
 
 
     
