@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}Products{% endblock %}
+
+{% block content %}
+    <div class="row row-cols-2">
+
+        {% for product in products %}
+            <div class="col my-2">
+                <div class="card h-100">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="{{ product.image }}" class="img-fluid rounded-start">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ product.title }}</h5>
+                                <p class="card-text"><small
+                                        class="text-body-secondary">{{ product.category.title }}</small>
+                                </p>
+                                <p class="card-text">Price: {{ product.price }}$</p>
+                                <a href="{% url 'product_view' product.pk %}" class="card-link">see more >>></a>
+                                <a href="{% url 'product_update_view' product.pk %}" class="card-link">Update</a>
+                                <a href="{% url 'product_delete_view' product.pk %}" class="card-link">Delete</a>
+                                <a href="{% url 'product_add_to_cart_view' product.pk %}" class="card-link">Add to Cart</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+
+    </div>
+
+{% endblock %}

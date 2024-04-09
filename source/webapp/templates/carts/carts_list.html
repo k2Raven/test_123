@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}Cart{% endblock %}
+
+{% block content %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Название товара</th>
+            <th scope="col">Цена</th>
+            <th scope="col">Количество</th>
+            <th scope="col">Сумма</th>
+            <th scope="col">Действие</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for cart in carts %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ cart.title }}</td>
+                <td>{{ cart.price }}</td>
+                <td>{{ cart.qty }}</td>
+                <td>{{ cart.total }}</td>
+                <td><a href="{% url 'product_delete_of_cart_view' cart.product_id %}">Удалить</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>Total: {{ total }}</h3>
+    
+    <div>
+    
+    <form action="{% url 'order_add_view' %}" method="POST">
+        {% csrf_token %}
+        {% include 'partial/form.html' %}
+        <button type="submit" class="btn btn-primary">Оформить заказ</button>
+    </form>
+    </div>
+
+{% endblock %}

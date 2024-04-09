@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}Update Product{% endblock %}
+{% block content %}
+    <h1>Update Product</h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {% include 'partial/form.html' %}
+        <button type="submit" class="btn btn-primary">Update product</button>
+    </form>
+{% endblock %}
