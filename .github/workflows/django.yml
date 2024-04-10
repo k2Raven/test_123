@@ -33,7 +33,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: Run deploy
+    - name: Run publish
       uses: appleboy/ssh-action@v0.1.10
       with:
         host: ${{ secrets.SSH_HOST }}
@@ -43,7 +43,7 @@ jobs:
         command_timeout: 30m
         script: | 
               cd ${{ secrets.WORK_DIR }}
-              ls
+              git pull
               exit
 
 
