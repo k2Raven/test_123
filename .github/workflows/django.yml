@@ -43,6 +43,7 @@ jobs:
         command_timeout: 30m
         script: | 
               cd ${{ secrets.WORK_DIR }}
+              ls
               exit
 
 
